@@ -1,0 +1,34 @@
+<html>
+<head>
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+</head>
+<body>
+ 
+<div id="log">
+  <h3>sample contents</h3>
+  <img src="assets/cloud1.jpg" width="200px">
+  <img src="assets/cloud2.jpg" width="200px">
+  <img src="assets/cloud3.jpg" width="200px">
+  <img src="assets/cloud4.jpg" width="200px">
+  <img src="assets/star.png" width="150px">
+  <br>
+  <video width="320" height="240" controls>
+    <source src="http://mirrors.creativecommons.org/movingimages/webm/WannaWorkTogether_480p.webm">
+  </video-->
+</div>
+
+<!-- Load the webcontent library asynchronously -->
+<script>
+ $(window).load(function() {
+  $.getScript('../lib/webcontent.js', function(data, textStatus, jqxhr) {
+    if (jqxhr.status == 200) { // success
+      console.log("%j", CCwebcontent);
+      CCwebcontent.setMediaFilter({"img":{"png":"all"}, "video":"all", "audio":"all"});
+      CCwebcontent.scanMediaURLs();
+      CCwebcontent.fingerprintURLs();
+    }
+  });
+ });
+</script>
+</body>
+</html>
