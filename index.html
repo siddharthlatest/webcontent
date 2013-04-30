@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Webcontent : " />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Webcontent</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/sids-aquarius/webcontent">View on GitHub</a>
+
+          <h1 id="project_title">Webcontent</h1>
+          <h2 id="project_tagline"></h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/sids-aquarius/webcontent/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/sids-aquarius/webcontent/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>CC WebContent</h1>
+
+<p>CC WebContent provides an API for automatic attribution of CC-licensed content on a page. It scans the page for the media files, and communicates with the CC OpenHome service to identify CC-licensed contents.</p>
+
+<h2>CC WebContent API</h2>
+
+<pre><code>CCwebcontent.scanMediaURLs()
+</code></pre>
+
+<p>Scans the media URLs from the page as specified by the <code>setMediaFilter</code> function(). Defaults to scanning all media types.</p>
+
+<pre><code>CCwebcontent.fingerprintURLs()
+</code></pre>
+
+<p>Communicates media URLs with the OpenHome service. For the media that are CC-licensed, it adds an attribution to the CC-licensed contents.</p>
+
+<pre><code>CCwebcontent.setMediaFilter(options)
+</code></pre>
+
+<p>Optional method: Allows to set filter on the type of media files to be scanned. <code>options</code> is a map object. Possible properties are "img", "video", "audio" and "text". MIME-types to filter can be specified as values.</p>
+
+<p>Example: <code>{"img":"all",
+          "video":{"mp4":"all","webm":"all"},
+          "audio":"all"}</code></p>
+
+<p>This scans the sources from all <code>&lt;img&gt;</code> tags, sources with <code>mp4</code> and <code>webm</code> MIME-types from <code>&lt;video&gt;</code> tags, and sources from all <code>&lt;audio&gt;</code> tags. It ignores other media types (text).</p>
+
+<h2>Usage</h2>
+
+<pre><code> $(window).load(function() {   // Load the CC Webcontent library after the contents on the page have been loaded.
+  $.getScript('lib/webcontent.js', function(data, textStatus, jqxhr) {  // Loads the library without blocking the parser
+    if (jqxhr.status == 200) { // success
+      console.log("%j", CCwebcontent);
+      CCwebcontent.scanMediaURLs();
+      CCwebcontent.fingerprintURLs();
+    }
+  });
+ });
+</code></pre>
+
+<p>Check out the example directory for an example.</p>
+
+<h2>TO-DOs</h2>
+
+<ul>
+<li>Scan media every time the dom is changed, ideally only the part(s) which are newly added.</li>
+<li>Add support for text media type.</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Webcontent maintained by <a href="https://github.com/sids-aquarius">sids-aquarius</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
