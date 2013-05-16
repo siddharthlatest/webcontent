@@ -1,25 +1,39 @@
 <html>
 <head>
   <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <style>
+    .content {
+      margin-right:15px;
+      margin-bottom:10px;
+    }
+  </style>
 </head>
 <body>
  
-<div id="log">
-  <h3>sample contents</h3>
-  <img src="assets/cloud1.jpg" width="200px">
-  <img src="assets/cloud2.jpg" width="200px">
-  <img src="assets/cloud3.jpg" width="200px">
-  <img src="assets/cloud4.jpg" width="200px">
-  <img src="assets/star.png" width="150px">
-  <br>
-  <video width="320" height="240" controls>
-    <source src="http://mirrors.creativecommons.org/movingimages/webm/WannaWorkTogether_480p.webm">
-  </video-->
+<div class="content" id="log">
+  <img class="content" src="assets/cloud1.jpg" width="200px">
+  <img class="content" src="assets/cloud2.jpg" width="200px">
+  <img class="content" src="assets/cloud3.jpg" width="200px">
+  <img class="content" src="assets/cloud4.jpg" width="200px">
+  <img class="content" src="assets/star.png" width="150px">
+  <video class="content" width="320" height="240" preload="none" controls>
+    <source src="http://mirrors.creativecommons.org/movingimages/webm/WannaWorkTogether_480p.webm" type="video/webm">
+    <source src="http://blip.tv/file/get/Commonscreative-WannaWorkTogether315.ogv" type="video/ogg">
+  </video>
 </div>
+<div style="position:fixed;bottom:30;z-index:1;">
+  <button style="margin-bottom:30px;" onclick="addelements()">Add more elements</button>
+<div>
 
 <!-- Load the webcontent library asynchronously -->
 <script>
+ var addelements;
  $(window).load(function() {
+  addelements = function() {
+    var logChildren = $("#log").children();
+    var nodeToAdd = $(logChildren[Math.floor(logChildren.length*Math.random())]).clone();
+    $("#log").append(nodeToAdd);
+  }
   $.getScript('../lib/webcontent.js', function(data, textStatus, jqxhr) {
     if (jqxhr.status == 200) { // success
       console.log("%j", CCwebcontent);
