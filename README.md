@@ -47,5 +47,5 @@ Check out the example directory for an example.
 TO-DOs
 ------
 
-* Scan media every time the dom is changed, ideally only the part(s) which are newly added.
+* Scan media every time the dom is changed, ideally only the part(s) which are newly added. [Done]
 * Add support for text media type.
